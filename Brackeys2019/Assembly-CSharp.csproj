@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Enemy\EnemyController.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <None Include="Assets\NotSwords\readme.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/Cam/Documents/GitHub/Brackeys-2019/Brackeys2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
