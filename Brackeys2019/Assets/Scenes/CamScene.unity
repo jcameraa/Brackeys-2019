@@ -29114,5 +29114,10 @@ PrefabInstance:
       propertyPath: points.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1082043859683866898, guid: 5dde36e046ea70a42b584da4552fcbf2,
+        type: 3}
+      propertyPath: wait
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dde36e046ea70a42b584da4552fcbf2, type: 3}

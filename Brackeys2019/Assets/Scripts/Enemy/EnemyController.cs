@@ -12,6 +12,10 @@ public class EnemyController : MonoBehaviour
     public float closeEnough;
     public GameObject player;
 
+    public float wait = 2;
+
+    private Vector3 moveTo;
+
     void Start()
     {
         var side_one = new Vector3(-16, 10.5f, 0);
@@ -32,8 +36,10 @@ public class EnemyController : MonoBehaviour
     // amount of enemies insead of the easy way im doing it currently
     private Vector3 RandomPointInBounds()
     {
-        var randomX = Random.Range(-16.1f, -13.5f);
-        var randomY = Random.Range(9.1f, 10.5f);
+        //Random.Range is INCLUSIVE
+        //IDK WHY THEY CHOOSE TO CLUMP UP
+        var randomX = Random.Range(-16f, -13.5f);
+        var randomY = Random.Range(9f, 10.5f);
 
         return new Vector3(randomX, randomY, 0);
     }
@@ -62,6 +68,7 @@ public class EnemyController : MonoBehaviour
         //if the player has been seen then either move towards the player or attack
         if (hasSeen)
         {
+            // stops the random movement of the bois
             if (Vector2.Distance(transform.position, player.transform.position) > closeEnough)
             {
                 FollowPlayer();
@@ -73,9 +80,9 @@ public class EnemyController : MonoBehaviour
                 //attack cool down (or give player a few invinsiable frames?)
             }
         }
-        else 
+        else
         {
-            RandomMovement();
+            Invoke("RandomMovement", wait);
         }
     }
 
