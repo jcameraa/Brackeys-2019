@@ -11,9 +11,19 @@ public class PlayerAttack : MonoBehaviour
         player = GetComponentInParent<PlayerStats>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    /* private void OnCollisionEnter(Collision collision)
+     {
+         Debug.Log("At player attack");
+         collision.gameObject.GetComponent<EnemyController>().takeDamage(player.curSword.choseDamage());
+     } */
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("At player attack");
-        collision.gameObject.GetComponent<EnemyController>().takeDamage(player.curSword.choseDamage());
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("I am at the enemy");
+            collision.gameObject.GetComponent<EnemyController>().takeDamage(player.curSword.choseDamage());
+        }
     }
 }
