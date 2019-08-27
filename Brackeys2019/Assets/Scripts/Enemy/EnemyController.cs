@@ -48,4 +48,17 @@ public class EnemyController : MonoBehaviour
     {
         this.transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
+
+    public void takeDamage(int damageTaken)
+    {
+        Debug.Log("enemy takes damage ");
+
+        health -= damageTaken; 
+
+        if (health <= 0)
+        {
+            Debug.Log("Enemy dead :)");
+            // delete enemy
+        }
+    }
 }
