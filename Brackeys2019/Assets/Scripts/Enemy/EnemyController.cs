@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log("Distance: " + Vector2.Distance(transform.position, player.transform.position));
+        //Debug.Log("Distance: " + Vector2.Distance(transform.position, player.transform.position));
         
         //if the player has been seen then either move towards the player or attack
         if (hasSeen)

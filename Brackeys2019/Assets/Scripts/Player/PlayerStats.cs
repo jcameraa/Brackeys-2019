@@ -7,6 +7,12 @@ using UnityEngine;
 // with the controller but I did not want to :)
 public class PlayerStats : MonoBehaviour
 {
+    // The current sword equipped
+    public SwordStats curSword;
+
+    // holds the attack collider as a child of this game object
+    public GameObject swordAttack;
+
     // The maxium health a player is able to have
     [SerializeField] private int maxHealth;
 
@@ -16,16 +22,15 @@ public class PlayerStats : MonoBehaviour
     // The radius oh how long the player's hit is
     [SerializeField] private int hitRange;
 
-    // The current sword equipped
-    [SerializeField] private SwordStats curSword;
-
-    // The list of enemies that were attacked durning any hit
-    private Collider2D[] enemiesHit; 
+    //True if in a state of attacking ,false otherwise
+    private bool isAttacking;
 
     private void Start()
     {
-        enemiesHit = new Collider2D[100];
+
         curHealth = maxHealth;
+        isAttacking = false;
+        swordAttack.GetComponent<BoxCollider2D>().enabled = false; 
     }
 
     // applies the damage from the enemy that attacked
@@ -53,28 +58,22 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // Attacks all enemies within a certain radius of the player
-    public void attackEnemies()
+    private IEnumerator disableCollider()
     {
-        /*
-        Physics2D.OverlapCircleNonAlloc(this.transform.position, hitRange, enemiesHit);
-
-        Debug.Log("Name " + enemiesHit[0]);
-
-        foreach(Collider2D enemy in enemiesHit)
-        {
-            enemy.GetComponent<EnemyController>().takeDamage(curSword.choseDamage());
-        }
-        enemiesHit = null;
-        */
+        Debug.Log("Here very quickly");
+        yield return new WaitForSeconds(1.5f);
+        swordAttack.GetComponent<BoxCollider2D>().enabled = false;
+        isAttacking = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !isAttacking)
         {
+            swordAttack.GetComponent<BoxCollider2D>().enabled = true;
+            isAttacking = true;
             Debug.Log("AHHHH");
-            attackEnemies();
+            StartCoroutine(disableCollider());
         }
     }
 }
