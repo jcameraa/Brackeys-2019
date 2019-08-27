@@ -67,7 +67,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Swords\SwordStats.cs" />
-    <None Include="Assets\NotSwords\readme.txt" />
+    <None Include="Assets\Art Assets\NotSwords\readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Brakeys GJ 2019/Brackeys-2019/Brackeys-2019/Brackeys2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
