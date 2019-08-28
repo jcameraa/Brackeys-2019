@@ -4,105 +4,40 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
-    private bool hasSeen = false;
-    private int health;
-
+    public float[] spawnBoundaries;
     public float speed = 2f;
-    public float closeEnough;
     public GameObject player;
+    public float closeEnough;
 
-    public float wait = 2;
+    public float wait;
 
-    private Vector3 moveTo;
-
+    // Start is called before the first frame update
     void Start()
     {
-        var side_one = new Vector3(-16, 10.5f, 0);
-        var side_two = new Vector3(-13.5f, 10.5f, 0);
-        var side_three = new Vector3(-13.5f, 9f, 0);
-        var side_four = new Vector3(-16, 9, 0);
-
-        // Used to see the spawn area of enemies
-        Debug.DrawLine(side_one, side_two, Color.red, 10000f, false);
-        Debug.DrawLine(side_two, side_three, Color.cyan, 10000f, false);
-        Debug.DrawLine(side_three, side_four, Color.green, 10000f, false);
-        Debug.DrawLine(side_four, side_one, Color.magenta, 10000f, false);
-
-        transform.position = RandomPointInBounds();
-    }
-
-    // randoms spawns an eneamy in a random place. Can easily be changed if we want to instansiate X 
-    // amount of enemies insead of the easy way im doing it currently
-    private Vector3 RandomPointInBounds()
-    {
-        //Random.Range is INCLUSIVE
-        //IDK WHY THEY CHOOSE TO CLUMP UP
-        var randomX = Random.Range(-16f, -13.5f);
-        var randomY = Random.Range(9f, 10.5f);
-
-        return new Vector3(randomX, randomY, 0);
-    }
-
-    // random moement of enemy, where they will bounce off eachother and boundries that I set
-    private void RandomMovement() 
-    {
-        this.transform.position = Vector2.MoveTowards(transform.position, RandomPointInBounds(), speed * Time.fixedDeltaTime);
-    }
-
-    void OnTriggerEnter2D(Collider2D other) 
-    {
-        // checks to see if the player is within sight
-        if (other.gameObject.tag == "Player") 
-        {
-            hasSeen = true;
-        }
-    }
-    
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-
-      //  Debug.Log("Distance: " + Vector2.Distance(transform.position, player.transform.position));
-        
-        //if the player has been seen then either move towards the player or attack
-        if (hasSeen)
-        {
-            // stops the random movement of the bois
-            if (Vector2.Distance(transform.position, player.transform.position) > closeEnough)
-            {
-                FollowPlayer();
-            }
-            else
-            {
-                //attack Player (probably just an animation)
-                //decrease player health 
-                //attack cool down (or give player a few invinsiable frames?)
-            }
-        }
-        else
-        {
-            Invoke("RandomMovement", wait);
-        }
+        Debug.Log(this.spawnBoundaries.Length);
+        Debug.Log(this.spawnBoundaries[0]);
+        Debug.Log(this.spawnBoundaries[1]);
+        Debug.Log(this.spawnBoundaries[2]);
+        Debug.Log(this.spawnBoundaries[3]);
     }
 
     // moves the enemy towards the player
-    void FollowPlayer() 
+    public void FollowPlayer()
     {
         this.transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.fixedDeltaTime);
     }
 
-    public void takeDamage(int damageTaken)
+    //Randomly picking a point for the enemy to start at using arbitrary consrtaints
+    // ideally this would be the size of the level or whereve we want these to spawn
+    public Vector3 RandomPointInBounds()
     {
-        Debug.Log("enemy takes damage ");
 
-        health -= damageTaken; 
+        //Random.Range is INCLUSIVE
+        //i know this is a weird way to do it but fight me
+        var randomX = Random.Range(this.spawnBoundaries[0], this.spawnBoundaries[1]); //length of the horizontal spawn box
+        var randomY = Random.Range(this.spawnBoundaries[2], this.spawnBoundaries[3]); //length of the vertical spawn box
 
-        if (health <= 0)
-        {
-            Debug.Log("Enemy dead :)");
-            // delete enemy
-        }
+        return new Vector3(randomX, randomY, 0);
     }
+
 }

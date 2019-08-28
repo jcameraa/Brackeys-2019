@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Line of Sight
+  - NavigationPoint
   layers:
   - Default
   - TransparentFX

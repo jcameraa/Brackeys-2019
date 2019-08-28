@@ -95,11 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1af297edc253940be3f4d5e70bffa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  closeEnough: 0.15
+  spawnBoundaries: []
+  speed: 0
   player: {fileID: 0}
-  points:
-  - {fileID: 0}
+  closeEnough: 0
+  wait: 0
+  walkBetween:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

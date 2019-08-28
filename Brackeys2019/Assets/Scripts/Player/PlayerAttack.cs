@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("I am at the enemy");
-            collision.gameObject.GetComponent<EnemyController>().takeDamage(player.curSword.choseDamage());
+            collision.gameObject.GetComponent<EnemyMovement>().takeDamage(player.curSword.choseDamage());
         }
     }
 }

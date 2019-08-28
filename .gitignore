@@ -111,3 +111,13 @@ Brackeys2019/Library/ScriptAssemblies/Unity.TextMeshPro.pdb
 Brackeys2019/Library/ScriptAssemblies/Unity.Timeline.dll
 Brackeys2019/Library/ScriptAssemblies/Unity.Timeline.Editor.dll
 Brackeys2019/Library/ShaderCache/EditorEncounteredVariants
+*.meta
+*.md
+*.meta
+*.asset
+*.cache
+*.pref
+*.sln
+*.graph
+Brackeys2019/Library/assetDatabase3
+Brackeys2019/Library/metadata/40/405b9b51bb344a128608d968297df79c
